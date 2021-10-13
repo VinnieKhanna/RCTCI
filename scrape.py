@@ -8,6 +8,7 @@ import pyppdf.patch_pyppeteer
 
 ### Data Collection
 
+import time
 import requests
 import json
 
@@ -34,6 +35,8 @@ session = HTMLSession()
 def get_and_render(row):
   r = session.get('https://leetcode.com/problems/' + row['title_slug'])
   r.html.render()
+  time.sleep(1)
+  print(r) # make sure this is never 429
   return r.html.html
 
 ##contains rendered html for each page, now parse problem descriptions from each respective html
