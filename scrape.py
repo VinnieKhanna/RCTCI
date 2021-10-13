@@ -1,5 +1,11 @@
 import pandas as pd
 
+
+""" You may need to use pip install pyppdf if
+you get an error asking to install Chromium
+"""
+import pyppdf.patch_pyppeteer
+
 ### Data Collection
 
 import requests
