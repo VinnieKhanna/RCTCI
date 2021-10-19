@@ -35,7 +35,7 @@ session = HTMLSession()
 def get_and_render(row):
   r = session.get('https://leetcode.com/problems/' + row['title_slug'])
   r.html.render()
-  time.sleep(1)
+  time.sleep(3)
   print(r) # make sure this is never 429
   return r.html.html
 
