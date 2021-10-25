@@ -1,4 +1,181 @@
 id,title,title_slug,difficulty,description
+2102,Find the Middle Index in Array,find-the-middle-index-in-array,1,
+2103,Find All Groups of Farmland,find-all-groups-of-farmland,2,
+2104,Operations on Tree,operations-on-tree,2,
+2105,The Number of Good Subsets,the-number-of-good-subsets,3,
+2106,Find Greatest Common Divisor of Array,find-greatest-common-divisor-of-array,1,
+2107,Find Unique Binary String,find-unique-binary-string,2,
+2108,Minimize the Difference Between Target and Chosen Elements,minimize-the-difference-between-target-and-chosen-elements,2,
+2109,Find Array Given Subset Sums,find-array-given-subset-sums,3,
+2111,Binary Searchable Numbers in an Unsorted Array,binary-searchable-numbers-in-an-unsorted-array,2,
+2112,Minimum Difference Between Highest and Lowest of K Scores,minimum-difference-between-highest-and-lowest-of-k-scores,1,
+2113,Find the Kth Largest Integer in the Array,find-the-kth-largest-integer-in-the-array,2,
+2114,Minimum Number of Work Sessions to Finish the Tasks,minimum-number-of-work-sessions-to-finish-the-tasks,2,
+2115,Number of Unique Good Subsequences,number-of-unique-good-subsequences,3,
+2116,Count Number of Pairs With Absolute Difference K,count-number-of-pairs-with-absolute-difference-k,1,"div><p>Given an integer array <code>nums</code> and an integer <code>k</code>, return <em>the number of pairs</em> <code>(i, j)</code> <em>where</em> <code>i &lt; j</code> <em>such that</em> <code>|nums[i] - nums[j]| == k</code>.</p>
+
+<p>The value of <code>|x|</code> is defined as:</p>
+
+<ul>
+	<li><code>x</code> if <code>x &gt;= 0</code>.</li>
+	<li><code>-x</code> if <code>x &lt; 0</code>.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> nums = [1,2,2,1], k = 1
+<strong>Output:</strong> 4
+<strong>Explanation:</strong> The pairs with an absolute difference of 1 are:
+- [<strong><u>1</u></strong>,<strong><u>2</u></strong>,2,1]
+- [<strong><u>1</u></strong>,2,<strong><u>2</u></strong>,1]
+- [1,<strong><u>2</u></strong>,2,<strong><u>1</u></strong>]
+- [1,2,<strong><u>2</u></strong>,<strong><u>1</u></strong>]
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> nums = [1,3], k = 3
+<strong>Output:</strong> 0
+<strong>Explanation:</strong> There are no pairs with an absolute difference of 3.
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><strong>Input:</strong> nums = [3,2,1,5,4], k = 2
+<strong>Output:</strong> 3
+<b>Explanation:</b> The pairs with an absolute difference of 2 are:
+- [<strong><u>3</u></strong>,2,<strong><u>1</u></strong>,5,4]
+- [<strong><u>3</u></strong>,2,1,<strong><u>5</u></strong>,4]
+- [3,<strong><u>2</u></strong>,1,5,<strong><u>4</u></strong>]
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 200</code></li>
+	<li><code>1 &lt;= nums[i] &lt;= 100</code></li>
+	<li><code>1 &lt;= k &lt;= 99</code></li>
+</ul>
+<"
+2117,Find Original Array From Doubled Array,find-original-array-from-doubled-array,2,
+2118,Maximum Earnings From Taxi,maximum-earnings-from-taxi,2,
+2119,Minimum Number of Operations to Make Array Continuous,minimum-number-of-operations-to-make-array-continuous,3,
+2121,Find if Path Exists in Graph,find-if-path-exists-in-graph,1,
+2122,Count Special Quadruplets,count-special-quadruplets,1,
+2123,The Number of Weak Characters in the Game,the-number-of-weak-characters-in-the-game,2,"div><p>You are playing a game that contains multiple characters, and each of the characters has <strong>two</strong> main properties: <strong>attack</strong> and <strong>defense</strong>. You are given a 2D integer array <code>properties</code> where <code>properties[i] = [attack<sub>i</sub>, defense<sub>i</sub>]</code> represents the properties of the <code>i<sup>th</sup></code> character in the game.</p>
+
+<p>A character is said to be <strong>weak</strong> if any other character has <strong>both</strong> attack and defense levels <strong>strictly greater</strong> than this character's attack and defense levels. More formally, a character <code>i</code> is said to be <strong>weak</strong> if there exists another character <code>j</code> where <code>attack<sub>j</sub> &gt; attack<sub>i</sub></code> and <code>defense<sub>j</sub> &gt; defense<sub>i</sub></code>.</p>
+
+<p>Return <em>the number of <strong>weak</strong> characters</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> properties = [[5,5],[6,3],[3,6]]
+<strong>Output:</strong> 0
+<strong>Explanation:</strong> No character has strictly greater attack and defense than the other.
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> properties = [[2,2],[3,3]]
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> The first character is weak because the second character has a strictly greater attack and defense.
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><strong>Input:</strong> properties = [[1,5],[10,4],[4,3]]
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> The third character is weak because the second character has a strictly greater attack and defense.
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>2 &lt;= properties.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>properties[i].length == 2</code></li>
+	<li><code>1 &lt;= attack<sub>i</sub>, defense<sub>i</sub> &lt;= 10<sup>5</sup></code></li>
+</ul>
+<"
+2124,First Day Where You Have Been in All the Rooms,first-day-where-you-have-been-in-all-the-rooms,2,
+2125,GCD Sort of an Array,gcd-sort-of-an-array,3,
+2126,Count Nodes Equal to Sum of Descendants,count-nodes-equal-to-sum-of-descendants,2,
+2128,Reverse Prefix of Word,reverse-prefix-of-word,1,
+2129,Number of Pairs of Interchangeable Rectangles,number-of-pairs-of-interchangeable-rectangles,2,
+2130,Maximum Product of the Length of Two Palindromic Subsequences,maximum-product-of-the-length-of-two-palindromic-subsequences,2,
+2131,Smallest Missing Genetic Value in Each Subtree,smallest-missing-genetic-value-in-each-subtree,3,
+2132,Convert 1D Array Into 2D Array,convert-1d-array-into-2d-array,1,
+2133,Number of Pairs of Strings With Concatenation Equal to Target,number-of-pairs-of-strings-with-concatenation-equal-to-target,2,
+2134,Maximize the Confusion of an Exam,maximize-the-confusion-of-an-exam,2,
+2135,Maximum Number of Ways to Partition an Array,maximum-number-of-ways-to-partition-an-array,3,
+2137,Final Value of Variable After Performing Operations,final-value-of-variable-after-performing-operations,1,
+2138,Sum of Beauty in the Array,sum-of-beauty-in-the-array,2,
+2139,Detect Squares,detect-squares,2,
+2140,Longest Subsequence Repeated k Times,longest-subsequence-repeated-k-times,3,
+2141,Smallest Greater Multiple Made of Two Digits,smallest-greater-multiple-made-of-two-digits,2,
+2142,Average Height of Buildings in Each Segment,average-height-of-buildings-in-each-segment,2,
+2144,Maximum Difference Between Increasing Elements,maximum-difference-between-increasing-elements,1,
+2145,Grid Game,grid-game,2,
+2146,Check if Word Can Be Placed In Crossword,check-if-word-can-be-placed-in-crossword,2,
+2147,The Score of Students Solving Math Expression,the-score-of-students-solving-math-expression,3,
+2153,Subtree Removal Game with Fibonacci Tree,subtree-removal-game-with-fibonacci-tree,3,
+2154,Minimum Moves to Convert String,minimum-moves-to-convert-string,1,
+2155,Find Missing Observations,find-missing-observations,2,"div><p>You have observations of <code>n + m</code> <strong>6-sided</strong> dice rolls with each face numbered from <code>1</code> to <code>6</code>. <code>n</code> of the observations went missing, and you only have the observations of <code>m</code> rolls. Fortunately, you have also calculated the <strong>average value</strong> of the <code>n + m</code> rolls.</p>
+
+<p>You are given an integer array <code>rolls</code> of length <code>m</code> where <code>rolls[i]</code> is the value of the <code>i<sup>th</sup></code> observation. You are also given the two integers <code>mean</code> and <code>n</code>.</p>
+
+<p>Return <em>an array of length </em><code>n</code><em> containing the missing observations such that the <strong>average value </strong>of the </em><code>n + m</code><em> rolls is <strong>exactly</strong> </em><code>mean</code>. If there are multiple valid answers, return <em>any of them</em>. If no such array exists, return <em>an empty array</em>.</p>
+
+<p>The <strong>average value</strong> of a set of <code>k</code> numbers is the sum of the numbers divided by <code>k</code>.</p>
+
+<p>Note that <code>mean</code> is an integer, so the sum of the <code>n + m</code> rolls should be divisible by <code>n + m</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> rolls = [3,2,4,3], mean = 4, n = 2
+<strong>Output:</strong> [6,6]
+<strong>Explanation:</strong> The mean of all n + m rolls is (3 + 2 + 4 + 3 + 6 + 6) / 6 = 4.
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> rolls = [1,5,6], mean = 3, n = 4
+<strong>Output:</strong> [2,3,2,2]
+<strong>Explanation:</strong> The mean of all n + m rolls is (1 + 5 + 6 + 2 + 3 + 2 + 2) / 7 = 3.
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><strong>Input:</strong> rolls = [1,2,3,4], mean = 6, n = 4
+<strong>Output:</strong> []
+<strong>Explanation:</strong> It is impossible for the mean to be 6 no matter what the 4 missing rolls are.
+</pre>
+
+<p><strong>Example 4:</strong></p>
+
+<pre><strong>Input:</strong> rolls = [1], mean = 3, n = 1
+<strong>Output:</strong> [5]
+<strong>Explanation:</strong> The mean of all n + m rolls is (1 + 5) / 2 = 3.
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>m == rolls.length</code></li>
+	<li><code>1 &lt;= n, m &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= rolls[i], mean &lt;= 6</code></li>
+</ul>
+<"
+2156,Stone Game IX,stone-game-ix,2,
+2157,Smallest K-Length Subsequence With Occurrences of a Letter,smallest-k-length-subsequence-with-occurrences-of-a-letter,3,
+2159,Two Out of Three,two-out-of-three,1,
+2160,Minimum Operations to Make a Uni-Value Grid,minimum-operations-to-make-a-uni-value-grid,2,
 2161,Stock Price Fluctuation ,stock-price-fluctuation,2,
 2162,Partition Array Into Two Arrays to Minimize Sum Difference,partition-array-into-two-arrays-to-minimize-sum-difference,3,"div><p>You are given an integer array <code>nums</code> of <code>2 * n</code> integers. You need to partition <code>nums</code> into <strong>two</strong> arrays of length <code>n</code> to <strong>minimize the absolute difference</strong> of the <strong>sums</strong> of the arrays. To partition <code>nums</code>, put each element of <code>nums</code> into <strong>one</strong> of the two arrays.</p>
 
