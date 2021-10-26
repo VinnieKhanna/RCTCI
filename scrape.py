@@ -1,5 +1,6 @@
 import pandas as pd
-
+from tqdm import tqdm
+import time
 
 """ You may need to use pip install pyppdf if
 you get an error asking to install Chromium
@@ -25,7 +26,8 @@ for problem in tqdm(problems):
   cleaned_problem['title'] = problem['stat']['question__title']
   cleaned_problem['title_slug'] = problem['stat']['question__title_slug']
   cleaned_problem['difficulty'] = problem['difficulty']['level']
-  cleaned_problems.append(cleaned_problem)
+  if not problem['paid_only']:
+    cleaned_problems.append(cleaned_problem)
 
 df = pd.DataFrame(reversed(cleaned_problems))
 df.set_index('id', inplace=True)
@@ -45,7 +47,10 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 driver = webdriver.Chrome(options=options)
 
+tqdm.pandas()
+
 def get_and_render(row):
+  time.sleep(3)
   driver.get('https://leetcode.com/problems/' + row['title_slug'])
   delay = 20
   try:
@@ -54,7 +59,7 @@ def get_and_render(row):
     print("Page is ready!")
   except TimeoutException:
     print("Loading took too much time!")
-    raise TimeoutException
+    return "<timed out, manual entry>"
 
   html = driver.page_source
   html = html[html.find('content__u3I1 question-content__JfgR'):]
@@ -63,7 +68,7 @@ def get_and_render(row):
   return problem
 
 
-df['description'] = df.apply(lambda x: get_and_render(x), axis=1)
+df['description'] = df.progress_apply(lambda x: get_and_render(x), axis=1)
 driver.quit()
 df.to_csv("problem_data.csv")
 
