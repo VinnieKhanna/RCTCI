@@ -62,19 +62,26 @@ def get_and_render(row):
   print(problem)
   return problem
 
+def get_and_render_topics(row):
+  time.sleep(3)
+  driver.get('https://leetcode.com/problems/' + row['title_slug'])
+  delay = 20
+  try:
+    # WAIT TILL CONTENT IS LOADED
+    WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.CLASS_NAME, 'css-1hky5w4')))
+    print("Page is ready!")
+  except TimeoutException:
+    print("Loading took too much time!")
+    return "<timed out, manual entry>"
 
-# df['description'] = df.progress_apply(lambda x: get_and_render(x), axis=1)
-# driver.quit()
-# df.to_csv("problem_data.csv")
-
+  html = driver.page_source
+  html = html[html.find('css-1hky5w4'):]
+  html = html[html.find('topic-tag__1jni'):]
+  html = html[:html.find('/div')]
+  print(html)
+  return html
 
 ### SELENIUM FOR PROBLEM RUN-TIME
-
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
 import re
 import operator
 
@@ -161,7 +168,8 @@ def get_and_render_discussions(row):
     return runtime
 
 df['runtime'] = df.progress_apply(lambda x: get_and_render_discussions(x), axis=1)
-print(all_runtimes)
+df['description'] = df.progress_apply(lambda x: get_and_render(x), axis=1)
+df['topics'] = df.progress_apply(lambda x: get_and_render_topics(x), axis=1)
 driver.quit()
 df.to_csv("problem_data.csv")
 
