@@ -63,7 +63,105 @@ def get_and_render(row):
   return problem
 
 
-df['description'] = df.progress_apply(lambda x: get_and_render(x), axis=1)
+# df['description'] = df.progress_apply(lambda x: get_and_render(x), axis=1)
+# driver.quit()
+# df.to_csv("problem_data.csv")
+
+
+### SELENIUM FOR PROBLEM RUN-TIME
+
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
+import re
+import operator
+
+options = webdriver.ChromeOptions()
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
+driver = webdriver.Chrome(options=options)
+
+tqdm.pandas()
+
+all_runtimes = {}
+problemID = 0
+
+def getWebsite(slug, page):
+  driver.get(f'https://leetcode.com/problems/{slug}/discuss/?currentPage={page}&orderBy=most_votes&query=')
+  delay = 20
+  try:
+    WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.CLASS_NAME, 'css-zjcz7i-TopicListContainer')))
+    # WAIT TILL CONTENT IS LOADED
+    print("Page is ready!")
+  except TimeoutException:
+    print("Loading took too much time!")
+    return "<timed out, manual entry>"
+  time.sleep(3)
+  html = driver.page_source
+  posts = html.split('topic-title__3LYM')
+  # topic-title__3LYM
+  if len(posts) < 10:
+    try:
+      time.sleep(3)
+      WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.CLASS_NAME, 'css-zjcz7i-TopicListContainer')))
+      # WAIT TILL CONTENT IS LOADED
+      print("Page is ready!")
+    except TimeoutException:
+      print("Loading took too much time!")
+      return "<timed out, manual entry>"  
+
+  if len(posts) < 10:
+    # above does not always work...
+    print("Loading took too much time!")
+    return "<timed out, manual entry>" 
+  html = driver.page_source
+  posts = html.split('topic-title__3LYM')[2:]
+  return posts
+
+def get_and_render_discussions(row): 
+  global all_runtimes
+  global problemID
+  problemID += 1 
+  # if problemID != 8: return
+  time.sleep(3)
+  posts = None
+  runtimes = {}
+
+  for i in range(1, 3):
+    posts = getWebsite(row['title_slug'], i)
+    for post in posts:
+      post_title = post[2:].split('</div>')[0]
+      if re.search("O\(.*\)", post_title):
+        # print(post_title)
+        runtime = post_title.split('O(')[1]
+        counter = 1
+        for idx, letter in enumerate(runtime):
+          if letter == '(':
+            counter += 1
+          elif letter == ')':
+            counter -= 1
+          if counter == 0:
+            runtime = runtime[:idx]
+            break
+        runtime = runtime.strip().lower()
+        if runtime not in runtimes:
+          runtimes[runtime] = 0
+        runtimes[runtime] += 1
+
+  print("runtimes: ", runtimes)
+
+  if len(runtimes.items()) == 0:
+    return "<timed out, manual entry>" 
+  else:
+    runtimes = sorted(runtimes.items(), key=operator.itemgetter(1),reverse=True)
+    runtime = runtimes[0][0]
+    print(problemID, ": ", runtime)
+    all_runtimes[problemID] = runtime
+    return runtime
+
+df['runtime'] = df.progress_apply(lambda x: get_and_render_discussions(x), axis=1)
+print(all_runtimes)
 driver.quit()
 df.to_csv("problem_data.csv")
 
