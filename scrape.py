@@ -62,8 +62,27 @@ def get_and_render(row):
   print(problem)
   return problem
 
+def get_and_render_topics(row):
+  time.sleep(3)
+  driver.get('https://leetcode.com/problems/' + row['title_slug'])
+  delay = 20
+  try:
+    # WAIT TILL CONTENT IS LOADED
+    WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.CLASS_NAME, 'css-1hky5w4')))
+    print("Page is ready!")
+  except TimeoutException:
+    print("Loading took too much time!")
+    return "<timed out, manual entry>"
+
+  html = driver.page_source
+  html = html[html.find('css-1hky5w4'):]
+  html = html[html.find('topic-tag__1jni'):]
+  html = html[:html.find('/div')]
+  print(html)
+  return html
 
 df['description'] = df.progress_apply(lambda x: get_and_render(x), axis=1)
+df['topics'] = df.progress_apply(lambda x: get_and_render_topics(x), axis=1)
 driver.quit()
 df.to_csv("problem_data.csv")
 
