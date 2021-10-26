@@ -12,12 +12,15 @@ you get an error asking to install Chromium
 import time
 import requests
 import json
+from tqdm import tqdm
 
 htmlText = requests.get('https://leetcode.com/api/problems/algorithms/').text
 problemData = json.loads(htmlText)
 problems = problemData['stat_status_pairs']
 cleaned_problems = []
-for problem in problems:
+
+print("Progress for making problems:")
+for problem in tqdm(problems):
   cleaned_problem = {}
   cleaned_problem['id'] = problem['stat']['question_id']
   cleaned_problem['title'] = problem['stat']['question__title']
@@ -28,6 +31,8 @@ for problem in problems:
 
 df = pd.DataFrame(reversed(cleaned_problems))
 df.set_index('id', inplace=True)
+df.to_csv("problem_data.csv")
+raise Exception('Paused')
 
 
 ### SELENIUM FOR PROBLEM DESCRIPTIONS
