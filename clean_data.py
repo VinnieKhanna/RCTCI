@@ -2,7 +2,19 @@ from numpy import NaN
 import pandas as pd
 
 #df = pd.read_csv('./data/problem_data_lc.csv')
-df = pd.read_csv('./data/problem_data_codeforces.csv')
+
+### replacing dp w/ dynamic programming
+'''
+df_cf = pd.read_csv('./data/cleaned_data_codeforces.csv')
+df_combined = pd.read_csv('./data/cleaned_data_combined.csv')
+
+df_cf['tags'] = df_cf['tags'].str.replace('dp', 'dynamic programming')
+df_combined['topics'] = df_combined['topics'].str.replace('dp', 'dynamic programming')
+
+df_cf.to_csv('./data/cleaned_data_codeforces.csv')
+df_combined.to_csv('./data/cleaned_data_combined.csv')
+'''
+
 
 def clean_cf_tags(df):
     df['tags'] = df['tags'].str.replace('+', ' ') #replace + with space
@@ -18,9 +30,9 @@ def clean_cf_descs(df):
     df['description'] = df['description'].str.replace('&le;', '<=')
     df['description'] = df['description'].str.replace('&ge;', '>=')
 
-clean_cf_tags(df)
-clean_cf_descs(df)
-df.to_csv('./data/cleaned_data_codeforces.csv')
+# clean_cf_tags(df)
+# clean_cf_descs(df)
+# df.to_csv('./data/cleaned_data_codeforces.csv')
 
 def clean_tags(df):
     def clean_tag_apply(x):
