@@ -20,3 +20,6 @@ Run the first 5 cells of the notebook (up to and including the cell that '%ls').
 
 ### BERT for Sequence Classification
 Run the first 5 cells of the notebook (up to and including the cell that '%ls'). Then, jump to 'BertforSequenceClassification' in the table of contents. 'Runtime', 'Difficulty', and 'Topics' are each present as sections under 'BertforSequenceClassification'. Run the cells in each section to see the results.
+
+### Clustering
+Run the first 6 cells of the notebook (up to and including the cell that creates dataframes). Then run the code block after the cell titled "Run Times", which will set up `df_lc_top6`. Then, jump to the "Clustering" section and run the code blocks up to and including `plotTopicSimilarity(embedding, labels, components):`
